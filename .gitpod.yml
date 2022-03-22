@@ -1,0 +1,14 @@
+image: gitpod/workspace-dotnet
+
+additionalRepositories:
+  - url: https://github.com/pythonnet/clr-loader.git
+
+tasks:
+  - init: pip install ../clr-loader
+  - init: pip install -r requirements.txt
+  - init: dotnet build
+  - init: pip install .
+
+vscode:
+  extensions:
+    - muhammad-sammy.csharp

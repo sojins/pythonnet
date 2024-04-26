@@ -13,7 +13,7 @@ dependencies = [
     "clr_loader>=0.2.6,<0.3.0"
 ]
 
-requires-python = ">=3.7, <3.13"
+requires-python = ">=3.7, <3.14"
 
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -42,6 +42,17 @@ email = "pythonnet@python.org"
 Homepage = "https://pythonnet.github.io/"
 Sources = "https://github.com/pythonnet/pythonnet"
 
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.4",
+    "psutil>=5.9.8",
+    "coverage>=7.2.7",
+    "codecov>=2.1.13",
+    "wheel>=0.42.0",
+    "pycparser>=2.21",
+    "clr-loader>=0.2.6",
+    "find-libpython>=0.3.1",
+]
 [tool.setuptools]
 zip-safe = false
 py-modules = ["clr"]

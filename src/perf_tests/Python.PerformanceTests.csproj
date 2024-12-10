@@ -34,6 +34,10 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\runtime\Python.Runtime.csproj" />
+  </ItemGroup>
+
   <Target Name="GetRuntimeLibBuildOutput" BeforeTargets="Build">
     <MSBuild Projects="..\runtime\Python.Runtime.csproj" Properties="OutputPath=bin\for_perf\;Configuration=Release;TargetFramework=netstandard2.0" Targets="Build">
       <Output TaskParameter="TargetOutputs" ItemName="NewPythonRuntime" />

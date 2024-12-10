@@ -14,9 +14,28 @@ namespace Python.PythonTestsRunner
 {
     public class PythonTestRunner
     {
+        private void AddEnvPath(params string[] paths)
+        {
+            // PC에 설정되어 있는 환경 변수를 가져온다.
+            var envPaths = Environment.GetEnvironmentVariable("PATH").Split(Path.PathSeparator).ToList();
+            // 중복 환경 변수가 없으면 list에 넣는다.
+            envPaths.InsertRange(0, paths.Where(x => x.Length > 0 && !envPaths.Contains(x)).ToArray());
+            // 환경 변수를 다시 설정한다.
+            Environment.SetEnvironmentVariable("PATH", string.Join(Path.PathSeparator.ToString(), envPaths), EnvironmentVariableTarget.Process);
+            Environment.SetEnvironmentVariable("PYTHONNET_PYDLL", "python38.dll");
+        }
+
         [OneTimeSetUp]
         public void SetUp()
         {
+            string python_dir = @"D:\Utility\Python38";
+            var PYTHON_HOME = Environment.ExpandEnvironmentVariables(python_dir);
+
+            // 환경 변수 설정
+            AddEnvPath(PYTHON_HOME);
+
+            PythonEngine.PythonHome = PYTHON_HOME;
+            Environment.SetEnvironmentVariable("PYTHONNET_PYDLL", "python38.dll");
             PythonEngine.Initialize();
         }
 

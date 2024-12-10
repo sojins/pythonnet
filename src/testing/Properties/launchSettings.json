@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Python.Test": {
+      "commandName": "Project"
+    }
+  }
+}
